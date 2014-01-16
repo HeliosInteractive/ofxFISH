@@ -1,0 +1,4 @@
+ofxXmlSettings
+ofxFISH
+ofxJSON
+ofxUI
