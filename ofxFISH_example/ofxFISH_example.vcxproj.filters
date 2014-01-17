@@ -19,14 +19,14 @@
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClCompile>
-    <ClCompile Include="src\ofxFISH.cpp">
-      <Filter>addons\ofxFISH\src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ofxFISH_User.cpp">
-      <Filter>addons\ofxFISH\src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\ofxSimpleTimer\src\ofxSimpleTimer.cpp">
       <Filter>addons\ofxSimpleTimer\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ofxFISH.cpp">
+      <Filter>addons\ofxFISH\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ofxFISH_User.cpp">
+      <Filter>addons\ofxFISH\src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -218,16 +218,16 @@
     <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWidgetWithLabel.h">
       <Filter>addons\ofxUI\src</Filter>
     </ClInclude>
-    <ClInclude Include="src\ofxFISH.h">
-      <Filter>addons\ofxFISH\src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ofxFISH_User.h">
-      <Filter>addons\ofxFISH\src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\ofxSimpleTimer\src\ofxSimpleTimer.h">
       <Filter>addons\ofxSimpleTimer\src</Filter>
     </ClInclude>
-    <ClInclude Include="src\ofxThreadedXml.h">
+    <ClInclude Include="..\src\ofxFISH.h">
+      <Filter>addons\ofxFISH\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ofxFISH_User.h">
+      <Filter>addons\ofxFISH\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ofxThreadedXml.h">
       <Filter>addons\ofxFISH\src</Filter>
     </ClInclude>
   </ItemGroup>

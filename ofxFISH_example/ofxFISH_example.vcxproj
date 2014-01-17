@@ -91,9 +91,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\ofxSimpleTimer\src\ofxSimpleTimer.cpp" />
+    <ClCompile Include="..\src\ofxFISH.cpp" />
+    <ClCompile Include="..\src\ofxFISH_User.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\ofxFISH.cpp" />
-    <ClCompile Include="src\ofxFISH_User.cpp" />
     <ClCompile Include="src\testApp.cpp" />
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.cpp" />
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.cpp" />
@@ -102,9 +102,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ofxSimpleTimer\src\ofxSimpleTimer.h" />
-    <ClInclude Include="src\ofxFISH.h" />
-    <ClInclude Include="src\ofxFISH_User.h" />
-    <ClInclude Include="src\ofxThreadedXml.h" />
+    <ClInclude Include="..\src\ofxFISH.h" />
+    <ClInclude Include="..\src\ofxFISH_User.h" />
+    <ClInclude Include="..\src\ofxThreadedXml.h" />
     <ClInclude Include="src\testApp.h" />
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.h" />
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.h" />
