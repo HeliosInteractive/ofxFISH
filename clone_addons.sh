@@ -10,3 +10,5 @@ cd ../../addons/
 git clone https://github.com/bakercp/ofxJSON.git
 
 git clone https://github.com/rezaali/ofxUI.git
+
+git clone https://github.com/HeliosInteractive/ofxSimpleTimer.git

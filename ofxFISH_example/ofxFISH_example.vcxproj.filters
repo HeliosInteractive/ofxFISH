@@ -19,6 +19,15 @@
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClCompile>
+    <ClCompile Include="src\ofxFISH.cpp">
+      <Filter>addons\ofxFISH\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ofxFISH_User.cpp">
+      <Filter>addons\ofxFISH\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ofxSimpleTimer\src\ofxSimpleTimer.cpp">
+      <Filter>addons\ofxSimpleTimer\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -47,6 +56,12 @@
     </Filter>
     <Filter Include="addons\ofxFISH\src">
       <UniqueIdentifier>{f34fc7a6-9a01-47c4-a3e6-84bc3a26b47f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxSimpleTimer">
+      <UniqueIdentifier>{be6239e2-ca1c-4f99-9709-160885a9245d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxSimpleTimer\src">
+      <UniqueIdentifier>{dd1a3e1b-e008-498b-ad50-366f483101dd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +217,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWidgetWithLabel.h">
       <Filter>addons\ofxUI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ofxFISH.h">
+      <Filter>addons\ofxFISH\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ofxFISH_User.h">
+      <Filter>addons\ofxFISH\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ofxSimpleTimer\src\ofxSimpleTimer.h">
+      <Filter>addons\ofxSimpleTimer\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ofxThreadedXml.h">
+      <Filter>addons\ofxFISH\src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
