@@ -3,9 +3,9 @@
 //--------------------------------------------------------------
 void testApp::setup(){
 	
-	fish.setup( "C:/fish/visitor_test.xml" ) ;
+	fish.setup( ofToDataPath( "" ) ) ;
 	//fish.setup( "file://C:/fish/visitor_test.xml" ) ; 
-	fish.xmlLoadtimer.start( true , true ); 
+	fish.jsonLoadTimer.start( true , true ); 
 	ofBackground ( 255 ) ; 
 	lastUserChange = -1 ; 
 
@@ -38,7 +38,13 @@ void testApp::newFishUserDetected ( string &args )
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-
+	switch ( key ) 
+	{
+		case 'e':
+		case 'E':
+			fish.endSession() ; 
+			break ; 
+	}
 }
 
 //--------------------------------------------------------------

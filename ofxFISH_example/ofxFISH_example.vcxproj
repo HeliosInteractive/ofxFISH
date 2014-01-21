@@ -58,7 +58,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxFISH\libs;..\..\..\addons\ofxFISH\src;..\..\..\addons\ofxUI\libs;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxSimpleTimer\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxFISH\libs;..\..\..\addons\ofxFISH\src;..\..\..\addons\ofxUI\libs;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxSimpleTimer\src;..\..\..\addons\ofxJSON\libs\jsoncpp\;..\..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\..\addons\ofxJSON\src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -75,7 +75,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxFISH\libs;..\..\..\addons\ofxFISH\src;..\..\..\addons\ofxUI\libs;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxSimpleTimer\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxFISH\libs;..\..\..\addons\ofxFISH\src;..\..\..\addons\ofxUI\libs;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxSimpleTimer\src;..\..\..\addons\ofxJSON\libs\jsoncpp\;..\..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\..\addons\ofxJSON\src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -90,6 +90,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\ofxJSON\libs\jsoncpp\src\json_reader.cpp" />
+    <ClCompile Include="..\..\ofxJSON\libs\jsoncpp\src\json_value.cpp" />
+    <ClCompile Include="..\..\ofxJSON\libs\jsoncpp\src\json_writer.cpp" />
+    <ClCompile Include="..\..\ofxJSON\src\ofxJSONElement.cpp" />
     <ClCompile Include="..\..\ofxSimpleTimer\src\ofxSimpleTimer.cpp" />
     <ClCompile Include="..\src\ofxFISH.cpp" />
     <ClCompile Include="..\src\ofxFISH_User.cpp" />
@@ -101,9 +105,21 @@
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\ofxJSON\libs\jsoncpp\include\json\autolink.h" />
+    <ClInclude Include="..\..\ofxJSON\libs\jsoncpp\include\json\config.h" />
+    <ClInclude Include="..\..\ofxJSON\libs\jsoncpp\include\json\features.h" />
+    <ClInclude Include="..\..\ofxJSON\libs\jsoncpp\include\json\forwards.h" />
+    <ClInclude Include="..\..\ofxJSON\libs\jsoncpp\include\json\json.h" />
+    <ClInclude Include="..\..\ofxJSON\libs\jsoncpp\include\json\reader.h" />
+    <ClInclude Include="..\..\ofxJSON\libs\jsoncpp\include\json\value.h" />
+    <ClInclude Include="..\..\ofxJSON\libs\jsoncpp\include\json\writer.h" />
+    <ClInclude Include="..\..\ofxJSON\libs\jsoncpp\src\json_batchallocator.h" />
+    <ClInclude Include="..\..\ofxJSON\libs\jsoncpp\src\json_tool.h" />
+    <ClInclude Include="..\..\ofxJSON\src\ofxJSONElement.h" />
     <ClInclude Include="..\..\ofxSimpleTimer\src\ofxSimpleTimer.h" />
     <ClInclude Include="..\src\ofxFISH.h" />
     <ClInclude Include="..\src\ofxFISH_User.h" />
+    <ClInclude Include="..\src\ofxThreadedJSON.h" />
     <ClInclude Include="..\src\ofxThreadedXml.h" />
     <ClInclude Include="src\testApp.h" />
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.h" />
@@ -166,6 +182,12 @@
     <ResourceCompile Include="icon.rc">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\ofxJSON\libs\jsoncpp\src\json_internalarray.inl" />
+    <None Include="..\..\ofxJSON\libs\jsoncpp\src\json_internalmap.inl" />
+    <None Include="..\..\ofxJSON\libs\jsoncpp\src\json_valueiterator.inl" />
+    <None Include="..\..\ofxJSON\libs\jsoncpp\src\sconscript" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>
