@@ -1,5 +1,6 @@
 #include "ofMain.h"
 #include "ofxXmlSettings.h"
+#include "ofxJSONElement.h"
 
 class ofxFISH_User
 {
@@ -15,13 +16,13 @@ public :
 	void reset() ; 
 	bool IsEmailValid( string email_address ) ; 
 	void populateFromXml( ofxXmlSettings * xml ) ; 
-	void draw ( float x , float y ) ; 
-	string rfid ; 
+	
+	string toString() ; 
+
+	string tag_id ; 
 	string email ; 
 	string firstName ; 
 	string lastName;
-
-	bool bFinished ; 
 
 
 };

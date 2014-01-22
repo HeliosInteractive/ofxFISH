@@ -3,9 +3,7 @@
 //--------------------------------------------------------------
 void testApp::setup(){
 	
-	fish.setup( ofToDataPath( "" ) ) ;
-	//fish.setup( "file://C:/fish/visitor_test.xml" ) ; 
-	fish.jsonLoadTimer.start( true , true ); 
+	fish.setup( "C:/fish/" ) ;
 	ofBackground ( 255 ) ; 
 	lastUserChange = -1 ; 
 
@@ -23,6 +21,8 @@ void testApp::update(){
 	}
 }
 
+
+
 //--------------------------------------------------------------
 void testApp::draw(){
 	fish.draw( ) ; 
@@ -34,7 +34,10 @@ void testApp::newFishUserDetected ( string &args )
 	lastUserChange = ofGetElapsedTimef() ;
 }
 
-
+void testApp::exit( ) 
+{
+	fish.exit() ; 
+}
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
@@ -43,6 +46,11 @@ void testApp::keyPressed(int key){
 		case 'e':
 		case 'E':
 			fish.endSession() ; 
+			break ; 
+
+		case 'b':
+		case 'B':
+			fish.beginSession() ; 
 			break ; 
 	}
 }

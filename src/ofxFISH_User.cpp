@@ -2,25 +2,17 @@
 
 void ofxFISH_User::reset( ) 
 {
-	rfid = "no rfid" ;
+	tag_id = "no rfid" ;
 	email = "no email" ;
-	bFinished = false ;
 }
 
-void ofxFISH_User::populateFromXml( ofxXmlSettings * xml ) 
-{
-	rfid = xml->getValue( "id" , "no rfid" ) ; 
-	email = xml->getValue( "email" , " no email" ) ; 
-	firstName = xml->getValue( "firstName" , "firstName" ) ; 
-	lastName = xml->getValue( "lastName" , "lastName" ); 
-	
-}
-
-void ofxFISH_User::draw ( float x , float y ) 
+string ofxFISH_User::toString () 
 {
 	stringstream ss ; 
-	ss << firstName << " " << lastName << endl << email << endl << rfid << endl ; 
-	ofDrawBitmapStringHighlight( ss.str() , x , y ) ; 
+	ss <<  " name : " << firstName << " " << lastName << endl << "email:" << email << endl << "tag_id" << tag_id << endl ; 
+	
+	return ss.str() ; 
+	//ofDrawBitmapStringHighlight( ss.str() , x , y ) ; 
 }
 
 bool ofxFISH_User::IsEmailValid(string email_address ) 

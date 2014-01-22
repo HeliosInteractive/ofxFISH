@@ -9,21 +9,25 @@
 class ofxFISH
 {
 public : 
+
+
 	ofxFISH() { } 
 	~ofxFISH() { } 
+
 
 	void setup ( string _jsonFolderPath ) ; 
 	void update ( ) ; 
 	void draw( ) ; 
+	void exit( ) ; 
 
 	void jsonLoadTimerComplete( int &args ) ; 
 	void sessionDataReady ( int &args ) ;
 	void visitorDataReady ( int &args ) ;
 
-	bool bSessionActive ; 
 	void beginSession( ) ;
 	void endSession( ) ; 
 
+	int idIncrement ; 
 	string jsonFolderPath ; 
 	ofxThreadedJSON sessionJson ; 
 	ofxThreadedJSON visitorJson ; 
@@ -36,8 +40,19 @@ public :
 	ofEvent< string > USER_CANCELLED ; 
 
 	//Basic User Management
-	ofxFISH_User currentUser ; 
+	ofxFISH_User user ; 
 	ofxFISH_User previousUser ; 
 
+		
+	enum FISH_APP_FLOW
+	{
+		WAITING_FOR_SESSION = 0 , 
+		WAITING_FOR_VISITOR = 1 , 
+		VISITOR_INFO_RECIEVED = 2
+	};
+
+	FISH_APP_FLOW appState ; 
+
+	void urlResponse ( ofHttpResponse &response ) ; 
 
 };
