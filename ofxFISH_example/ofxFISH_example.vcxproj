@@ -90,6 +90,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\ofxHttpForm\src\HttpFormManager.cpp" />
     <ClCompile Include="..\..\ofxJSON\libs\jsoncpp\src\json_reader.cpp" />
     <ClCompile Include="..\..\ofxJSON\libs\jsoncpp\src\json_value.cpp" />
     <ClCompile Include="..\..\ofxJSON\libs\jsoncpp\src\json_writer.cpp" />
@@ -105,6 +106,8 @@
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\ofxHttpForm\src\HttpForm.h" />
+    <ClInclude Include="..\..\ofxHttpForm\src\HttpFormManager.h" />
     <ClInclude Include="..\..\ofxJSON\libs\jsoncpp\include\json\autolink.h" />
     <ClInclude Include="..\..\ofxJSON\libs\jsoncpp\include\json\config.h" />
     <ClInclude Include="..\..\ofxJSON\libs\jsoncpp\include\json\features.h" />
@@ -117,6 +120,13 @@
     <ClInclude Include="..\..\ofxJSON\libs\jsoncpp\src\json_tool.h" />
     <ClInclude Include="..\..\ofxJSON\src\ofxJSONElement.h" />
     <ClInclude Include="..\..\ofxSimpleTimer\src\ofxSimpleTimer.h" />
+    <ClInclude Include="..\addons\libcurl\include\curl\curl.h" />
+    <ClInclude Include="..\addons\libcurl\include\curl\curlver.h" />
+    <ClInclude Include="..\addons\libcurl\include\curl\easy.h" />
+    <ClInclude Include="..\addons\libcurl\include\curl\mprintf.h" />
+    <ClInclude Include="..\addons\libcurl\include\curl\multi.h" />
+    <ClInclude Include="..\addons\libcurl\include\curl\stdcheaders.h" />
+    <ClInclude Include="..\addons\libcurl\include\curl\types.h" />
     <ClInclude Include="..\src\ofxFISH.h" />
     <ClInclude Include="..\src\ofxFISH_User.h" />
     <ClInclude Include="..\src\ofxThreadedJSON.h" />
@@ -188,6 +198,8 @@
     <None Include="..\..\ofxJSON\libs\jsoncpp\src\json_internalmap.inl" />
     <None Include="..\..\ofxJSON\libs\jsoncpp\src\json_valueiterator.inl" />
     <None Include="..\..\ofxJSON\libs\jsoncpp\src\sconscript" />
+    <None Include="..\addons\libcurl\include\curl\Makefile.am" />
+    <None Include="..\addons\libcurl\include\curl\Makefile.in" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>

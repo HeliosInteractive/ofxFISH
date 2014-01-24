@@ -40,6 +40,9 @@
     <ClCompile Include="..\..\ofxJSON\libs\jsoncpp\src\json_writer.cpp">
       <Filter>addons\ofxJSON\libs\jsoncpp\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\ofxHttpForm\src\HttpFormManager.cpp">
+      <Filter>addons\ofxHttpForms\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -95,6 +98,27 @@
     </Filter>
     <Filter Include="addons\ofxJSON\libs\jsoncpp\include\json">
       <UniqueIdentifier>{a9852811-4a94-4b76-8b1e-ee97d720f8a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxHttpForms">
+      <UniqueIdentifier>{9d42bc7b-c6bc-45b9-8fac-d905cfff64a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxHttpForms\src">
+      <UniqueIdentifier>{146be7b6-34f2-4fa1-b28b-13ff3477fa38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxFISH\addons">
+      <UniqueIdentifier>{b5efeb1a-380b-497f-9b78-5a1c54e6aa2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxFISH\addons\libcurl">
+      <UniqueIdentifier>{a71a49f8-eb2a-4317-a5e1-070be811783e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxFISH\addons\libcurl\lib">
+      <UniqueIdentifier>{13a68d21-7bcf-4d6f-b047-652069bdf8e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxFISH\addons\libcurl\include">
+      <UniqueIdentifier>{b002044b-4108-40b2-a646-8c2ddd45b4e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxFISH\addons\libcurl\include\curl">
+      <UniqueIdentifier>{c71df953-e436-4725-937c-e7d7e7ccdfda}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -299,6 +323,33 @@
     <ClInclude Include="..\src\ofxThreadedJSON.h">
       <Filter>addons\ofxFISH\src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\ofxHttpForm\src\HttpFormManager.h">
+      <Filter>addons\ofxHttpForms\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ofxHttpForm\src\HttpForm.h">
+      <Filter>addons\ofxHttpForms\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\addons\libcurl\include\curl\types.h">
+      <Filter>addons\ofxFISH\addons\libcurl\include\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\addons\libcurl\include\curl\stdcheaders.h">
+      <Filter>addons\ofxFISH\addons\libcurl\include\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\addons\libcurl\include\curl\multi.h">
+      <Filter>addons\ofxFISH\addons\libcurl\include\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\addons\libcurl\include\curl\mprintf.h">
+      <Filter>addons\ofxFISH\addons\libcurl\include\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\addons\libcurl\include\curl\easy.h">
+      <Filter>addons\ofxFISH\addons\libcurl\include\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\addons\libcurl\include\curl\curlver.h">
+      <Filter>addons\ofxFISH\addons\libcurl\include\curl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\addons\libcurl\include\curl\curl.h">
+      <Filter>addons\ofxFISH\addons\libcurl\include\curl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
@@ -315,6 +366,12 @@
     </None>
     <None Include="..\..\ofxJSON\libs\jsoncpp\src\sconscript">
       <Filter>addons\ofxJSON\libs\jsoncpp\src</Filter>
+    </None>
+    <None Include="..\addons\libcurl\include\curl\Makefile.in">
+      <Filter>addons\ofxFISH\addons\libcurl\include\curl</Filter>
+    </None>
+    <None Include="..\addons\libcurl\include\curl\Makefile.am">
+      <Filter>addons\ofxFISH\addons\libcurl\include\curl</Filter>
     </None>
   </ItemGroup>
 </Project>

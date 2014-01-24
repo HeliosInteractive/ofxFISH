@@ -3,7 +3,8 @@
 //--------------------------------------------------------------
 void testApp::setup(){
 	
-	fish.setup( "C:/fish/" ) ;
+	//string _domain , string _station , string _authToken 
+	fish.setup( "C:/fish/" , "DOMAIN" , "STATION ID" , "AUTH_TOKEN" ) ;
 	ofBackground ( 255 ) ; 
 	lastUserChange = -1 ; 
 
@@ -51,7 +52,9 @@ void testApp::keyPressed(int key){
 		case 'b':
 		case 'B':
 			fish.beginSession() ; 
-			break ; 
+			break ;
+
+		break ; 
 	}
 }
 

@@ -1,16 +1,22 @@
 #include "ofxFISH.h"
 
 
-void ofxFISH::setup( string _jsonFolderPath ) 
+
+void ofxFISH::setup( string _jsonFolderPath , string _domain , string _stationId , string _authToken ) 
 {
 	jsonFolderPath = _jsonFolderPath;
-	jsonLoadTimer.setup( 10000 , "RFID__SCAN_TIMER" , 5 ) ;
+	jsonLoadTimer.setup( 500 , "RFID__SCAN_TIMER" , 5 ) ;
 	ofAddListener( jsonLoadTimer.TIMER_COMPLETE , this , &ofxFISH::jsonLoadTimerComplete ) ; 
 	ofAddListener( sessionJson.JSON_DATA_READY , this , &ofxFISH::sessionDataReady ) ;
 	ofAddListener( visitorJson.JSON_DATA_READY , this , &ofxFISH::visitorDataReady ) ;
 
-	user.firstName = "DEFAULT CURRENT" ; 
-	previousUser.firstName = "DEFAULT PREVIOUS" ; 
+	domain = _domain ; 
+	stationId = _stationId ; 
+	authToken = _authToken ; 
+
+	ofLogNotice( "creating new instance of ofxFISH " ) << endl << "domain - " << domain << endl << "station - " << stationId << endl << "authToken - " << authToken << endl ; 
+	user.first_name = "DEFAULT CURRENT" ; 
+	previousUser.first_name = "DEFAULT PREVIOUS" ; 
 
 	sessionJson.bActive = true ; 
 
@@ -23,6 +29,10 @@ void ofxFISH::setup( string _jsonFolderPath )
 	idIncrement= 0 ;
 
 	appState = WAITING_FOR_SESSION ; 
+
+	connectionAttempts = 0 ; 
+	connectionMaxAttempts = 3 ; ; 
+
 }
 
 
@@ -58,6 +68,63 @@ void ofxFISH::visitorDataReady ( int &args )
 	user.tag_id = tag_id ; 
 
 	appState = VISITOR_INFO_RECIEVED ;
+	
+	request = ofxJSONElement() ;; 
+	request.clear() ;
+
+	request["auth_id"] = authToken + "3" ; //"1QAarRlaZK11jlcTDbQ5ULc9M";
+	request["id"] = tag_id ; 
+	request["id_type"] = "rfid";
+
+	string url = domain + "module/regdata/rdq";  
+	ofLogNotice( "SENDING OUT JSON ---- " ) << endl << request.getRawString( true ) << endl ; 
+	response = securePostJson( url ,request.getRawString( false )) ; // _json ) ; //copyJson.getRawString(false) ) ; //  _json ) ; //copyJson.getRawString(false) );
+	ofLogNotice("response : ") << "'" << response.getRawString( true ) << "'" << endl ;
+
+	bool bSuccess = false ; 
+	if ( response != "" ) 
+	{
+		bool bResult = user.populateFromJSON( response ) ; 
+		if ( bResult == true  )
+			bSuccess = true ; 		
+	}
+
+	if ( bSuccess ) 
+	{
+		ofLogNotice( " USER IS NOW " ) << user.toString() ; 
+	}
+	else
+	{
+		ofLogError( "Could not parse user data ! " ) ;
+	}
+}
+
+string ofxFISH::securePostJson( string reference , string json )
+{
+	try {
+		Poco::URI uri(reference);
+
+		const Poco::Net::Context::Ptr context( new Poco::Net::Context( Poco::Net::Context::CLIENT_USE, "", "", "", Poco::Net::Context::VERIFY_NONE) );
+		Poco::Net::HTTPSClientSession session(uri.getHost(), uri.getPort(), context);
+		string path(uri.getPathAndQuery());
+
+		Poco::Net::HTTPRequest req(Poco::Net::HTTPRequest::HTTP_POST, path, Poco::Net::HTTPMessage::HTTP_1_1);
+		req.setKeepAlive(false);
+		std::string reqBody(json);
+		req.setContentType("application/json");
+		req.setContentLength( reqBody.length() );
+		session.sendRequest(req) << reqBody;
+
+		Poco::Net::HTTPResponse res;
+		istream& rs = session.receiveResponse(res);
+		string result;
+		Poco::StreamCopier::copyToString(rs, result);
+		return result;
+	}
+	catch (Poco::Exception& exc) {
+		ofLogError("ERROR", exc.displayText());
+			return "";
+	}  
 }
 
 void ofxFISH::beginSession( ) 
@@ -76,17 +143,12 @@ void ofxFISH::beginSession( )
 		}
 
 		return ; 
-		//ofLogError( " ofxFishBeginSession()  BUT session is ALREADY ACTIVE ! ending... " ) ; 
-		//endSession() ; 
 	}
 
 	idIncrement++ ; 
 
 	ofxJSONElement json ; 
 	json.open( "session.json" ) ;
-	
-	//json["session_id"] = "x-y-1-" + ofToString( idIncrement ) ; 
-	//json.save(  jsonFolderPath + "session.json" , false ) ; 
 
 	
 	stringstream ss ; 
@@ -100,17 +162,11 @@ void ofxFISH::beginSession( )
 	
 	
 	string fullLength = jsonFolderPath + "session.json" ; 
-//	cout << "fullPath " << fullLength << endl ;
 	bool bFolderSuccess = ofBufferToFile(  jsonFolderPath + "/session.json" , jsonBuffer , false ) ; 
 	bool bLocalSuccess = ofBufferToFile(  "session.json" , jsonBuffer , false ) ; 
-	
-//	cout << "bFolderSuccess : " << bFolderSuccess << endl ; 
-//	cout << "bLocalSuccess : " << bLocalSuccess << endl;	
-	
+
 	sessionJson.bActive = false ; 
 	visitorJson.bActive = true ; 
-	jsonLoadTimer.delayMillis = 500 ; 
-
 	appState = WAITING_FOR_VISITOR ; 
 	
 	jsonLoadTimer.start( true , true ) ; 
@@ -141,12 +197,47 @@ void ofxFISH::endSession( )
 	
 	appState = WAITING_FOR_SESSION ; 
 	//cout << "bLocalSuccess : " << bLocalSuccess << endl;	
+}
 
+void ofxFISH::resetSession ( ) 
+{
+	
+	//MATCH THIS
+	//endSession( ) ; 
+
+	/*
+	switch ( appState ) 
+	{
+	case WAITING_FOR_SESSION : 
+		ofFile::removeFile( jsonFolderPath + "session.json" ) ; 
+		break ; 
+
+	case WAITING_FOR_VISITOR : 
+		stringstream ss ; 
+			ss << "{" << '"' << "session_id" << '"' << ": " << '"' << "x-y-1-" <<  idIncrement << '"' << "}" ; 
+
+			cout << "JSON FILE IS : " << endl << ss.str() << endl ; 
+
+			string jsonOutput = ss.str() ; 
+			ofBuffer jsonBuffer ; 
+			jsonBuffer.set( ss.str() ) ; 
+			ofFile::removeFile( jsonFolderPath + "session.json" ) ; 
+			string fullLength = jsonFolderPath + "session.json" ; 
+			bool bFolderSuccess = ofBufferToFile(  jsonFolderPath + "/session.json" , jsonBuffer , false ) ; 
+			bool bLocalSuccess = ofBufferToFile(  "session.json" , jsonBuffer , false ) ; 
+			break ; 
+
+	case VISITOR_INFO_RECIEVED : 
+		break ; 
+	}*/
+
+	ofFile::removeFile( jsonFolderPath + "/visitor.json" ) ; 
+	ofFile::removeFile( jsonFolderPath + "/session.json" ) ; 
 }
 
 void ofxFISH::exit( ) 
 {
-	endSession( ) ; 
+	resetSession( ) ; 
 }
 
 void ofxFISH::update( ) 
