@@ -1,19 +1,19 @@
 
-ofxFISH - open frameworks addon for integrating with FISH RFIDsystems for event deployments ( http://www.experiencefish.net/ ) 
+ofxFISH - open frameworks addon for integrating with FISH RFID systems for event deployments ( http://www.experiencefish.net/ ) 
+
 
 Created by Helios Interactive of San Francisco, CA
 
-Released under the MIT license 
 
-http://opensource.org/licenses/MIT
+Released under the MIT license - http://opensource.org/licenses/MIT
 
-The clone_addons.sh script should = get the addons you need.
+
+The clone_addons.sh script should get the addons you need.
 
 
 External Addons :
 
 ofxJSON , ofxSimpleTimer
-
 
 
 BIG SHOUT OUT to : 
