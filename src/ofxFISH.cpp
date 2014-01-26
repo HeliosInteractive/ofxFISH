@@ -5,7 +5,7 @@
 void ofxFISH::setup( string _jsonFolderPath , string _domain , string _stationId , string _authToken ) 
 {
 	jsonFolderPath = _jsonFolderPath;
-	jsonLoadTimer.setup( 500 , "RFID__SCAN_TIMER" , 5 ) ;
+	jsonLoadTimer.setup( 100 , "RFID_SCAN_TIMER" , 5 ) ;
 	ofAddListener( jsonLoadTimer.TIMER_COMPLETE , this , &ofxFISH::jsonLoadTimerComplete ) ; 
 	ofAddListener( sessionJson.JSON_DATA_READY , this , &ofxFISH::sessionDataReady ) ;
 	ofAddListener( visitorJson.JSON_DATA_READY , this , &ofxFISH::visitorDataReady ) ;
@@ -35,6 +35,14 @@ void ofxFISH::setup( string _jsonFolderPath , string _domain , string _stationId
 
 }
 
+void ofxFISH::debugUserTag( string rfid )  
+{
+	ofxJSONElement visitor ; 
+	visitor.open( "visitor.json" ) ; 
+	visitor[ "tag_id" ] = rfid ; 
+
+	visitor.save( jsonFolderPath + "/visitor.json" , false ) ; 
+}
 
 void ofxFISH::sessionDataReady( int &args )
 {
@@ -174,10 +182,6 @@ void ofxFISH::beginSession( )
 	}
 
 	idIncrement++ ; 
-
-	ofxJSONElement json ; 
-	json.open( "session.json" ) ;
-
 	
 	stringstream ss ; 
 	ss << "{" << '"' << "session_id" << '"' << ": " << '"' << "x-y-1-" <<  idIncrement << '"' << "}" ; 
@@ -308,7 +312,13 @@ void ofxFISH::jsonLoadTimerComplete( int &args )
 	}
 	else if ( visitorJson.bActive ) 
 	{
-		ofLogVerbose( "VISITOR JSON is active ! Loading now... " ) << endl ; 
-		visitorJson.load( jsonFolderPath + "/visitor.json" ) ; 
+		if ( ofFile::doesFileExist( jsonFolderPath + "/visitor.json"  ) ) 
+		{
+			string args = "CHECKIN"  ; 
+			ofNotifyEvent( USER_CHECKIN , args ) ;  
+
+			ofLogVerbose( "VISITOR JSON is active ! Loading now... " ) << endl ; 
+			visitorJson.load( jsonFolderPath + "/visitor.json" ) ; 
+		}
 	}
 }

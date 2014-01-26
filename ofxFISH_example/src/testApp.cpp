@@ -8,6 +8,7 @@ void testApp::setup(){
 	ofBackground ( 255 ) ; 
 	lastUserChange = -1 ; 
 
+	ofAddListener( fish.USER_CHECKIN , this , &testApp::newFishUserCheckIn ) ; 
 	ofAddListener( fish.NEW_USER_DATA_COLLECTED , this , &testApp::newFishUserHandler ) ;
 	ofAddListener( fish.NEW_USER_DATA_INCOMPLETE , this , &testApp::newFishUserNoDataHandler ) ;
 }
@@ -28,6 +29,11 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
 	fish.draw( ) ; 
+}
+
+void testApp::newFishUserCheckIn( string & args ) 
+{
+	ofLogNotice( " NEW USER CHECKIN " ) ; 
 }
 
 void testApp::newFishUserNoDataHandler ( string &args ) 
@@ -63,6 +69,9 @@ void testApp::keyPressed(int key){
 			fish.beginSession() ; 
 			break ;
 
+		case 't':
+		case 'T':
+			fish.debugUserTag( "3236333736363837" ) ; 
 		break ; 
 	}
 }

@@ -28,7 +28,7 @@ bool ofxFISH_User::populateFromJSON( ofxJSONElement json )
 		if ( numGuests < 1 ) 
 		{
 			ofLogError( "Not enough guest data. No email !" ) ; 
-			return false ; 
+			//return false ; 
 		}
 
 		cout << " # guests... " << numGuests << endl ; 

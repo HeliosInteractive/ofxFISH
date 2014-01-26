@@ -25,6 +25,7 @@ class testApp : public ofBaseApp{
 
 		void newFishUserHandler ( string &args ) ; 
 		void newFishUserNoDataHandler ( string &args ) ; 
+		void newFishUserCheckIn( string & args ) ; 
 
 
 		float lastUserChange ; 

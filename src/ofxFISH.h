@@ -48,6 +48,7 @@ public :
 	void beginSession( ) ;
 	void endSession( ) ; 
 	void resetSession( ) ; 
+	void debugUserTag( string rfid ) ;  
 
 	//Global Variables
 	string domain ; 
@@ -67,6 +68,7 @@ public :
 	//Some Events to trigger to our the app
 	ofEvent< string > NEW_USER_DATA_COLLECTED ; 
 	ofEvent< string > NEW_USER_DATA_INCOMPLETE ;
+	ofEvent< string > USER_CHECKIN ; 
 
 	//Basic User Management
 	ofxFISH_User user ; 
