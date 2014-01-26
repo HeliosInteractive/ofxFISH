@@ -23,6 +23,9 @@ class testApp : public ofBaseApp{
 		
 		ofxFISH fish ; 
 
-		void newFishUserDetected ( string &args ) ; 
+		void newFishUserHandler ( string &args ) ; 
+		void newFishUserNoDataHandler ( string &args ) ; 
+
+
 		float lastUserChange ; 
 };

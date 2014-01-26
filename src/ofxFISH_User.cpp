@@ -3,7 +3,7 @@
 void ofxFISH_User::reset( ) 
 {
 	tag_id = "no rfid" ;
-	email = "no email" ;
+	email = "" ;
 	first_name = "jon" ; 
 	last_name = "snow" ; 
 }
@@ -43,22 +43,4 @@ bool ofxFISH_User::populateFromJSON( ofxJSONElement json )
 		return false ;
 	}
 }
-bool ofxFISH_User::IsEmailValid(string email_address ) 
-{
-	int atIndex = email_address.find( "@" ) ; 
-	int dotIndex = email_address.find( "." ) ; 
 
-	if ( email_address.compare( "no email" ) != 0
-		&& atIndex > 0 
-		&& dotIndex > 0 )  
-	{
-		ofLogVerbose( email_address ) << " is valid" << endl; 
-		return true ;
-	}
-	else
-	{
-		ofLogError( email_address ) << "is not VALID" << endl ; 
-		return false ;
-	}
-
-}

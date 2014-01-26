@@ -65,8 +65,8 @@ public :
 	ofxJSONElement copyJson ;
 
 	//Some Events to trigger to our the app
-	ofEvent< string > NEW_USER_DETECTED ; 
-	ofEvent< string > USER_CANCELLED ; 
+	ofEvent< string > NEW_USER_DATA_COLLECTED ; 
+	ofEvent< string > NEW_USER_DATA_INCOMPLETE ;
 
 	//Basic User Management
 	ofxFISH_User user ; 
@@ -86,7 +86,8 @@ public :
 	ofxSimpleTimer requestTimer ; 
 	void requestTimerComplete ( int & args ) ; 
 	
-
+	bool validateEmail( string email_address ) ; 
+	
 
 
 };

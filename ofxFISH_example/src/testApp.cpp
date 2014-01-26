@@ -4,11 +4,12 @@
 void testApp::setup(){
 	
 	//string _domain , string _station , string _authToken 
-	fish.setup( "C:/fish/" , "DOMAIN" , "STATION ID" , "AUTH_TOKEN" ) ;
+	fish.setup( "C:/fish/" , "https://sbevent.fishsoftware.com/" , "3PCA-MRM-1" , "1QAarRlaZK11jlcTDbQ5ULc9M" ) ;
 	ofBackground ( 255 ) ; 
 	lastUserChange = -1 ; 
 
-	ofAddListener( fish.NEW_USER_DETECTED , this , &testApp::newFishUserDetected ) ; 
+	ofAddListener( fish.NEW_USER_DATA_COLLECTED , this , &testApp::newFishUserHandler ) ;
+	ofAddListener( fish.NEW_USER_DATA_INCOMPLETE , this , &testApp::newFishUserNoDataHandler ) ;
 }
 
 //--------------------------------------------------------------
@@ -29,9 +30,17 @@ void testApp::draw(){
 	fish.draw( ) ; 
 }
 
-void testApp::newFishUserDetected ( string &args ) 
+void testApp::newFishUserNoDataHandler ( string &args ) 
 {
+	ofLogNotice( "NEW FISH USER ! But no Email :( " ) ;  
 	ofBackground( 255 , 0 , 0 ) ; 
+	lastUserChange = ofGetElapsedTimef() ;
+}
+
+void testApp::newFishUserHandler ( string &args ) 
+{
+	ofLogNotice( "NEW FISH USER ! With all that juicy data :) " ) ; 
+	ofBackground( 0 , 255 , 0 ) ; 
 	lastUserChange = ofGetElapsedTimef() ;
 }
 

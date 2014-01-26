@@ -13,7 +13,6 @@ public :
 
 
 	void reset() ; 
-	bool IsEmailValid( string email_address ) ; 
 	bool populateFromJSON( ofxJSONElement json ) ; 
 	
 	string toString() ; 

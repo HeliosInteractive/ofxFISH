@@ -72,7 +72,7 @@ void ofxFISH::visitorDataReady ( int &args )
 	request = ofxJSONElement() ;; 
 	request.clear() ;
 
-	request["auth_id"] = authToken + "3" ; //"1QAarRlaZK11jlcTDbQ5ULc9M";
+	request["auth_id"] = authToken ; //"1QAarRlaZK11jlcTDbQ5ULc9M";
 	request["id"] = tag_id ; 
 	request["id_type"] = "rfid";
 
@@ -89,6 +89,7 @@ void ofxFISH::visitorDataReady ( int &args )
 			bSuccess = true ; 		
 	}
 
+	/*
 	if ( bSuccess ) 
 	{
 		ofLogNotice( " USER IS NOW " ) << user.toString() ; 
@@ -96,6 +97,14 @@ void ofxFISH::visitorDataReady ( int &args )
 	else
 	{
 		ofLogError( "Could not parse user data ! " ) ;
+	}*/
+
+	if ( validateEmail( user.email ) == true  ) 
+		ofNotifyEvent( NEW_USER_DATA_COLLECTED , user.email ) ; 
+	else
+	{
+		string userName = user.first_name + " " + user.last_name ; 
+		ofNotifyEvent( NEW_USER_DATA_INCOMPLETE , userName ) ; 
 	}
 }
 
@@ -127,6 +136,25 @@ string ofxFISH::securePostJson( string reference , string json )
 	}  
 }
 
+bool ofxFISH::validateEmail( string email_address ) 
+{
+	int atIndex = email_address.find( "@" ) ; 
+	int dotIndex = email_address.find( "." ) ; 
+
+	if ( email_address.compare( "no email" ) != 0 
+		&& email_address.compare( "" ) != 0 
+		&& atIndex > 0 
+		&& dotIndex > 0 )  
+	{
+		ofLogVerbose( email_address ) << " is valid" << endl; 
+		return true ;
+	}
+	else
+	{
+		ofLogError( email_address ) << "is not VALID" << endl ; 
+		return false ;
+	}
+}
 void ofxFISH::beginSession( ) 
 {
 	if ( appState != WAITING_FOR_SESSION ) 
