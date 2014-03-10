@@ -4,7 +4,7 @@
 void testApp::setup(){
 	
 	//string _domain , string _station , string _authToken 
-	fish.setup( "C:/fish/" , "https://sbevent.fishsoftware.com/" , "3PCA-MRM-1" , "1QAarRlaZK11jlcTDbQ5ULc9M" ) ;
+	fish.setup( "C:/fish/" , "" , "" , "" ) ;
 	ofBackground ( 255 ) ; 
 	lastUserChange = -1 ; 
 
